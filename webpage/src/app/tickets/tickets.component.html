@@ -1,0 +1,124 @@
+<div class="fade-in">
+  <!-- Header with Filters -->
+  <div class="bg-white rounded-lg shadow-sm p-3 lg:p-6 mb-4 lg:mb-6">
+    <div class="flex items-center justify-between mb-3 lg:mb-4">
+      <h3 class="text-lg lg:text-xl font-bold text-gray-800">Support Tickets</h3>
+      <span class="px-2 lg:px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs lg:text-sm font-semibold">
+        {{ filteredTickets.length }}
+      </span>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="grid grid-cols-2 sm:flex sm:flex-wrap gap-2">
+      <button (click)="filterTickets('All')" 
+              [class]="selectedFilter === 'All' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'"
+              class="px-3 lg:px-4 py-2 rounded-lg text-sm lg:text-base font-medium transition-colors">
+        All ({{ tickets.length }})
+      </button>
+      <button (click)="filterTickets('Open')" 
+              [class]="selectedFilter === 'Open' ? 'bg-yellow-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'"
+              class="px-3 lg:px-4 py-2 rounded-lg text-sm lg:text-base font-medium transition-colors">
+        Open ({{ openCount }})
+      </button>
+      <button (click)="filterTickets('In Progress')" 
+              [class]="selectedFilter === 'In Progress' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'"
+              class="px-3 lg:px-4 py-2 rounded-lg text-sm lg:text-base font-medium transition-colors">
+        In Progress ({{ inProgressCount }})
+      </button>
+      <button (click)="filterTickets('Closed')" 
+              [class]="selectedFilter === 'Closed' ? 'bg-green-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'"
+              class="px-3 lg:px-4 py-2 rounded-lg text-sm lg:text-base font-medium transition-colors">
+        Closed ({{ closedCount }})
+      </button>
+    </div>
+  </div>
+
+  <!-- Tickets Table - Desktop -->
+  <div class="hidden lg:block bg-white rounded-lg shadow-sm overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subject</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Priority</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assignee</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          <tr *ngFor="let ticket of filteredTickets" class="hover:bg-gray-50 transition-colors">
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+              {{ ticket.id }}
+            </td>
+            <td class="px-6 py-4 text-sm text-gray-900">
+              <div class="font-medium">{{ ticket.subject }}</div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span [class]="getStatusColor(ticket.status)" class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full border">
+                {{ ticket.status }}
+              </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span [class]="getPriorityColor(ticket.priority)" class="text-sm font-semibold">
+                {{ ticket.priority }}
+              </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+              {{ ticket.assignee }}
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              {{ formatDate(ticket.createdAt) }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="filteredTickets.length === 0" class="text-center py-12">
+      <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+      </svg>
+      <h3 class="mt-2 text-sm font-medium text-gray-900">No tickets found</h3>
+      <p class="mt-1 text-sm text-gray-500">Try adjusting your filter.</p>
+    </div>
+  </div>
+
+  <!-- Tickets Cards - Mobile -->
+  <div class="lg:hidden space-y-3">
+    <div *ngFor="let ticket of filteredTickets" class="bg-white rounded-lg shadow-sm p-4 border border-gray-200">
+      <div class="flex items-start justify-between mb-2">
+        <span class="text-xs font-semibold text-gray-500">{{ ticket.id }}</span>
+        <span [class]="getStatusColor(ticket.status)" class="px-2 py-0.5 text-xs font-semibold rounded-full border">
+          {{ ticket.status }}
+        </span>
+      </div>
+      <h4 class="font-semibold text-gray-900 mb-2">{{ ticket.subject }}</h4>
+      <div class="grid grid-cols-2 gap-2 text-xs text-gray-600">
+        <div>
+          <span class="font-medium">Priority:</span>
+          <span [class]="getPriorityColor(ticket.priority)" class="font-semibold ml-1">{{ ticket.priority }}</span>
+        </div>
+        <div>
+          <span class="font-medium">Created:</span>
+          <span class="ml-1">{{ formatDate(ticket.createdAt) }}</span>
+        </div>
+        <div class="col-span-2">
+          <span class="font-medium">Assignee:</span>
+          <span class="ml-1">{{ ticket.assignee }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State Mobile -->
+    <div *ngIf="filteredTickets.length === 0" class="text-center py-12 bg-white rounded-lg">
+      <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+      </svg>
+      <h3 class="mt-2 text-sm font-medium text-gray-900">No tickets found</h3>
+      <p class="mt-1 text-sm text-gray-500">Try adjusting your filter.</p>
+    </div>
+  </div>
+</div>
