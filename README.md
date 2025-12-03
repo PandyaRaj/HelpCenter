@@ -32,10 +32,6 @@ A full-stack project combining a **Flutter mobile messaging app** with an **Angu
 |-------------|
 | ![Chat](flutter_app/lib/models/chat2.png) 
 
-### Angular Dashboard
-| Tickets | Knowledge Base | Live Logs |
-|---------|----------------|-----------|
-| ![Tickets](screenshots/tickets.png) | ![KB](screenshots/kb.png) | ![Logs](screenshots/logs.png) |
 
 </details>
 
