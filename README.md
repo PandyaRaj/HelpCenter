@@ -46,7 +46,6 @@ A full-stack project combining a **Flutter mobile messaging app** with an **Angu
 | 💾 Persistence | Local message storage using Hive |
 | 🔔 Badges | Unread message count indicator |
 | 🕐 Smart Timestamps | Today, Yesterday, and date formatting |
-| 🌙 Dark Mode | System-aware theme switching |
 | ✨ Animations | Smooth scroll and UI transitions |
 | 🌐 WebView | Embedded Angular dashboard |
 
