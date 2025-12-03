@@ -1,74 +1,138 @@
-# Messaging App + Internal Tools Dashboard
+# 📱 HelpCenter - Messaging App + Internal Tools Dashboard
 
-A full-stack project combining a **Flutter mobile messaging app** with an **Angular-based internal tools dashboard**, embedded inside the app using WebView. The project demonstrates a clean UI, local data persistence, responsive design, and seamless mobile–web integration.
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Angular_Dashboard-brightgreen)](https://help-center-ieag.vercel.app/tickets)
+[![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?logo=flutter&logoColor=white)](https://flutter.dev)
+[![Angular](https://img.shields.io/badge/Angular-16+-DD0031?logo=angular&logoColor=white)](https://angular.io)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
+
+A full-stack project combining a **Flutter mobile messaging app** with an **Angular-based internal tools dashboard**, embedded inside the app using WebView. The project demonstrates clean UI, local data persistence, responsive design, and seamless mobile–web integration.
+
+---
+
+## 🌐 Live Demo
+
+**🔗 Angular Dashboard:** [https://help-center-ieag.vercel.app](https://help-center-ieag.vercel.app/tickets)
+
+| Module | Link |
+|--------|------|
+| 🎫 Tickets | [View Tickets](https://help-center-ieag.vercel.app/tickets) |
+| 📚 Knowledge Base | [View Knowledge Base](https://help-center-ieag.vercel.app/knowledgebase) |
+| 📊 Live Logs | [View Logs](https://help-center-ieag.vercel.app/logs) |
+
+---
+
+## 📸 Screenshots
+
+<details>
+<summary>Click to view screenshots</summary>
+
+### Flutter Messaging App
+<!-- Add your screenshots here -->
+| Chat Screen | Dashboard Tab |
+|-------------|---------------|
+| ![Chat](screenshots/chat.png) | ![Dashboard](screenshots/dashboard.png) |
+
+### Angular Dashboard
+| Tickets | Knowledge Base | Live Logs |
+|---------|----------------|-----------|
+| ![Tickets](screenshots/tickets.png) | ![KB](screenshots/kb.png) | ![Logs](screenshots/logs.png) |
+
+</details>
 
 ---
 
 ## 🚀 Features
 
 ### 📱 Flutter Messaging App
-- Modern chat interface with message bubbles  
-- Text and emoji messaging  
-- Auto-reply simulation  
-- Local message storage using Hive  
-- Unread message badge  
-- Smart timestamps (Today, Yesterday)  
-- Dark mode support  
-- Smooth UI animations  
-- Dashboard tab loading Angular app via WebView  
 
-### 🌐 Angular Internal Tools Dashboard
-- Runs on `localhost:4200`  
-- Ticket viewer with filtering  
-- Knowledge base Markdown editor with live preview  
-- Real-time logs panel with auto-scroll and pause/resume  
-- Tailwind CSS responsive layout  
-- Fully functional inside Flutter WebView  
+| Feature | Description |
+|---------|-------------|
+| 💬 Chat Interface | Modern message bubbles with incoming/outgoing styles |
+| 😊 Emoji Support | Quick emoji picker and emoji message type |
+| 🤖 Auto-Reply | Simulated support agent responses |
+| 💾 Persistence | Local message storage using Hive |
+| 🔔 Badges | Unread message count indicator |
+| 🕐 Smart Timestamps | Today, Yesterday, and date formatting |
+| ✨ Animations | Smooth scroll and UI transitions |
+| 🌐 WebView | Embedded Angular dashboard |
+
+### 🖥️ Angular Internal Tools Dashboard
+
+| Feature | Description |
+|---------|-------------|
+| 🎫 Ticket Viewer | Filter by Open, In Progress, Closed status |
+| 📚 Knowledge Base | Markdown editor with live preview |
+| 📊 Live Logs | Real-time log streaming with pause/resume |
+| 📱 Responsive | Mobile-first Tailwind CSS design |
+| 🎨 Modern UI | Clean, professional interface |
 
 ---
 
 ## 🏗️ Tech Stack
 
-### Flutter (Mobile)
-- Flutter 3.x  
-- Dart (null-safe)  
-- Hive (local DB)  
-- webview_flutter plugin  
+### Mobile (Flutter)
+```
+Flutter 3.x | Dart (null-safe) | Hive | webview_flutter | intl
+```
 
-### Angular (Web)
-- Angular 16+  
-- Tailwind CSS  
-- TypeScript  
+### Web (Angular)
+```
+Angular 16+ | TypeScript | Tailwind CSS | marked (Markdown)
+```
 
 ---
 
 ## 📁 Project Structure
 
-```text
-project_root/
+```
+HelpCenter/
 │
-├── flutter_app/               # Flutter mobile app
+├── 📱 flutter_app/                    # Flutter Mobile App
 │   ├── lib/
+│   │   ├── main.dart                  # App entry point
+│   │   ├── models/
+│   │   │   └── message.dart           # Message data model
+│   │   ├── screens/
+│   │   │   ├── home_screen.dart       # Bottom navigation
+│   │   │   ├── messages_screen.dart   # Chat interface
+│   │   │   └── dashboard_screen.dart  # WebView container
+│   │   ├── services/
+│   │   │   └── message_service.dart   # Business logic
+│   │   └── widgets/
+│   │       └── message_bubble.dart    # Chat bubble widget
 │   ├── android/
 │   ├── ios/
 │   └── pubspec.yaml
 │
-└── webpage/                   # Angular internal tools dashboard
-    ├── src/
-    ├── angular.json
-    └── package.json
+├── 🌐 webpage/                        # Angular Dashboard
+│   ├── src/
+│   │   ├── app/
+│   │   │   ├── app.component.*        # Root component
+│   │   │   ├── app.module.ts          # Module & routing
+│   │   │   ├── tickets/               # Ticket management
+│   │   │   ├── knowledgebase/         # Markdown editor
+│   │   │   └── logs/                  # Live logs panel
+│   │   ├── index.html
+│   │   └── styles.css
+│   ├── angular.json
+│   └── package.json
+│
+└── README.md
 ```
 
 ---
 
-## 🔧 Running the Project Locally
+## 🔧 Getting Started
 
-This project includes a Flutter mobile app and an Angular dashboard.  
-Follow these steps to run both parts together.
+### Prerequisites
+
+- Flutter SDK 3.x+
+- Node.js 18+
+- Angular CLI (`npm install -g @angular/cli`)
 
 ---
 
-### 1. Start the Angular Dashboard
+### 1️⃣ Start the Angular Dashboard
 
 ```bash
 cd webpage
@@ -76,19 +140,20 @@ npm install
 ng serve --host 0.0.0.0
 ```
 
-The dashboard will be available at:
+Dashboard available at:
+| Platform | URL |
+|----------|-----|
+| Browser | `http://localhost:4200` |
+| Android Emulator | `http://10.0.2.2:4200` |
+| iOS Simulator | `http://localhost:4200` |
 
-- Browser: `http://localhost:4200`
-- Flutter Android Emulator: `http://10.0.2.2:4200`
-- Flutter iOS Simulator: `http://localhost:4200`
-
-Leave this running.
+> ⚠️ Keep this terminal running
 
 ---
 
-### 2. Start the Flutter App
+### 2️⃣ Start the Flutter App
 
-Open another terminal:
+Open a new terminal:
 
 ```bash
 cd flutter_app
@@ -96,49 +161,63 @@ flutter pub get
 flutter run
 ```
 
-To list connected devices:
+#### Useful Commands
 
 ```bash
+# List connected devices
 flutter devices
-```
 
-If needed:
-
-```bash
+# Run on specific device
 flutter run -d <device_id>
-```
 
----
-
-### (Optional) If you see Hive adapter errors
-
-Some generated files may need to be rebuilt:
-
-```bash
+# Rebuild Hive adapters (if needed)
 flutter pub run build_runner build --delete-conflicting-outputs
 ```
 
 ---
 
-## 🧩 Key Capabilities
+## 🧩 Architecture Overview
 
-- Real-time simulated chat  
-- Smooth animations and transitions  
-- Persistent message history  
-- Multi-screen navigation  
-- Platform-aware WebView connection  
-- Responsive Angular interface  
-- Markdown editing, preview, and tools  
-- Filtering, logging, and simulation modules  
+```
+┌─────────────────────────────────────────────────────────────┐
+│                     FLUTTER APP                              │
+│  ┌─────────────┐    ┌──────────────┐    ┌───────────────┐   │
+│  │   Screens   │◄──►│   Services   │◄──►│  Hive (Local) │   │
+│  │  (UI Layer) │    │(Business Logic)   │   (Storage)   │   │
+│  └─────────────┘    └──────────────┘    └───────────────┘   │
+│         │                                                    │
+│         ▼                                                    │
+│  ┌──────────────────────────────────────────────────────┐   │
+│  │                 WebView (Dashboard Tab)               │   │
+│  │  ┌────────────────────────────────────────────────┐  │   │
+│  │  │            ANGULAR DASHBOARD                    │  │   │
+│  │  │  ┌──────────┐ ┌──────────┐ ┌──────────┐       │  │   │
+│  │  │  │ Tickets  │ │ KB Editor│ │   Logs   │       │  │   │
+│  │  │  └──────────┘ └──────────┘ └──────────┘       │  │   │
+│  │  └────────────────────────────────────────────────┘  │   │
+│  └──────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────┘
+```
 
 ---
 
-## 🧭 Roadmap / Future Enhancements
+## 🎯 Key Highlights
 
-- Push notifications  
-- Backend live messaging  
-- User authentication  
-- Cloud-synced dashboard data  
-- Deployable Angular build with hosting  
+- ✅ **Real-time simulated chat** with auto-reply
+- ✅ **Persistent message history** using Hive
+- ✅ **Platform-aware WebView** (Android/iOS URL handling)
+- ✅ **Responsive Angular dashboard** (works on mobile WebView)
+- ✅ **Markdown editor** with live preview
+- ✅ **Live logs** with pause/resume and export
+- ✅ **Dark mode support** (system-aware)
+- ✅ **Clean architecture** with separation of concerns
 
+---
 
+## 🧭 Roadmap
+
+- [ ] Push notifications
+- [ ] Backend integration for live messaging
+- [ ] User authentication
+- [ ] Cloud-synced dashboard data
+- [ ] Production deployment guide
