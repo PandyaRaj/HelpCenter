@@ -23,17 +23,14 @@ A full-stack project combining a **Flutter mobile messaging app** with an **Angu
 
 ## 📸 Screenshots
 
-<details>
-<summary>Click to view screenshots</summary>
 
-### Flutter Messaging App
+## Flutter Messaging App
 <!-- Add your screenshots here -->
 | Chat Screen | 
 |-------------|
 | ![Chat](flutter_app/lib/models/chat2.png) 
 
 
-</details>
 
 ---
 
