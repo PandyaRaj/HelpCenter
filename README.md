@@ -141,7 +141,4 @@ flutter pub run build_runner build --delete-conflicting-outputs
 - Cloud-synced dashboard data  
 - Deployable Angular build with hosting  
 
----
 
-## 📄 License
-MIT License (or
