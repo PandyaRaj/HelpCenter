@@ -30,7 +30,7 @@ A full-stack project combining a **Flutter mobile messaging app** with an **Angu
 <!-- Add your screenshots here -->
 | Chat Screen | Dashboard Tab |
 |-------------|---------------|
-| ![Chat](screenshots/chat.png) | ![Dashboard](screenshots/dashboard.png) |
+| ![Chat](assets/chat.png) 
 
 ### Angular Dashboard
 | Tickets | Knowledge Base | Live Logs |
